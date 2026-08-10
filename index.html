@@ -4,10 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MilShop — Diseños Propios</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
 <!-- Google Analytics 4 — reemplaza G-XXXXXXXXXX por tu ID real de GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
@@ -26,6 +22,7 @@
     --turf:#2e5339;
     --turf-bright:#4f8f5b;
     --line: rgba(239,233,220,0.14);
+    --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -34,11 +31,11 @@
       radial-gradient(circle at 50% -10%, rgba(79,143,91,0.12), transparent 55%),
       var(--pitch);
     color:var(--paper);
-    font-family:'JetBrains Mono', monospace;
+    font-family:var(--font);
     min-height:100vh;
     padding-bottom:60px;
   }
-  h1,h2,h3,.display{ font-family:'Oswald', sans-serif; text-transform:uppercase; letter-spacing:0.02em; }
+  h1,h2,h3,.display{ font-family:var(--font); font-weight:700; letter-spacing:-0.01em; }
 
   header{
     padding:22px 6vw 18px;
@@ -50,9 +47,11 @@
     width:34px; height:34px; border-radius:50%;
     border:2px solid var(--turf-bright);
     display:flex; align-items:center; justify-content:center;
-    font-family:'Oswald',sans-serif; font-weight:700; font-size:15px;
+    font-family:var(--font); font-weight:700; font-size:15px;
+    overflow:hidden; flex-shrink:0;
   }
-  .logo-text{ font-family:'Oswald',sans-serif; font-weight:700; font-size:20px; letter-spacing:0.06em; }
+  .logo-mark img{ width:100%; height:100%; object-fit:cover; }
+  .logo-text{ font-family:var(--font); font-weight:700; font-size:20px; letter-spacing:0.06em; }
   .logo-sub{ font-size:9.5px; color:var(--turf-bright); letter-spacing:0.18em; margin-top:-2px;}
   .zona-tag{ font-size:10.5px; letter-spacing:0.1em; color:var(--paper-dim); text-align:right; line-height:1.6; }
   .zona-tag b{ color:var(--paper); }
@@ -96,7 +95,7 @@
   .ticket-photo .stock-flag{
     position:absolute; top:10px; left:10px;
     background:rgba(0,0,0,0.35); color:var(--paper);
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:9.5px; letter-spacing:0.06em;
+    font-family:var(--font); font-weight:600; font-size:9.5px; letter-spacing:0.06em;
     padding:4px 9px; border-radius:3px;
   }
 
@@ -106,7 +105,7 @@
   .perf::after{ bottom:-7px; }
 
   .ticket-info{ flex:1; padding:20px 20px 18px 24px; display:flex; flex-direction:column; }
-  .ticket-eventname{ font-family:'Oswald', sans-serif; font-weight:700; font-size:20px; line-height:1.08; margin-bottom:2px; }
+  .ticket-eventname{ font-family:var(--font); font-weight:700; font-size:20px; line-height:1.08; margin-bottom:2px; }
   .ticket-kit{ font-size:10.5px; color:#5c5a4d; letter-spacing:0.06em; margin-bottom:16px; }
 
   .ticket-meta{ display:grid; grid-template-columns:1fr 1fr; gap:10px 14px; margin-bottom:16px; }
@@ -117,18 +116,18 @@
   .talla-row .meta-label{ font-size:9px; letter-spacing:0.14em; color:#8a8672; margin-bottom:7px; }
   .talla-opts{ display:flex; gap:6px; flex-wrap:wrap; }
   .talla-opts button{
-    font-family:'JetBrains Mono', monospace; font-size:11.5px; font-weight:500;
+    font-family:var(--font); font-size:11.5px; font-weight:500;
     border:1px solid rgba(21,23,15,0.3); background:transparent; color:var(--ink);
     padding:6px 11px; border-radius:3px; cursor:pointer; transition:all .2s ease;
   }
   .talla-opts button.active{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
 
   .ticket-bottom{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; padding-top:14px; border-top:1px dashed rgba(21,23,15,0.22); }
-  .price{ font-family:'Oswald', sans-serif; font-weight:700; font-size:22px; }
+  .price{ font-family:var(--font); font-weight:700; font-size:22px; }
   .price sup{ font-size:11px; font-weight:500; }
 
   .reservar-btn{
-    font-family:'Oswald', sans-serif; font-weight:600; font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;
+    font-family:var(--font); font-weight:600; font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;
     background:var(--turf); color:var(--paper); border:none; padding:11px 18px; border-radius:4px; cursor:pointer;
     display:flex; align-items:center; gap:8px; transition:background .2s ease, transform .2s ease;
   }
@@ -139,7 +138,7 @@
     margin:60px 6vw 0; border-top:1px dashed var(--line); padding-top:28px;
     display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:24px;
   }
-  .info-block .info-label{ font-family:'Oswald',sans-serif; font-size:11.5px; letter-spacing:0.1em; color:var(--turf-bright); margin-bottom:8px; }
+  .info-block .info-label{ font-family:var(--font); font-size:11.5px; letter-spacing:0.1em; color:var(--turf-bright); margin-bottom:8px; }
   .info-block p{ font-size:12px; color:var(--paper-dim); line-height:1.7; }
 
   footer{
@@ -162,7 +161,10 @@
 
 <header>
   <div class="logo">
-    <div class="logo-mark">M</div>
+    <div class="logo-mark">
+      <img src="logo.png" alt="MilShop" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <span style="display:none;">M</span>
+    </div>
     <div>
       <div class="logo-text">MilShop</div>
       <div class="logo-sub">DISEÑOS PROPIOS</div>
