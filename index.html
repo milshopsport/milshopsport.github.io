@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MilShop — Diseños Propios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- Google Analytics 4 — reemplaza G-XXXXXXXXXX por tu ID real de GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<style>
+  :root{
+    --pitch:#0c0f0d;
+    --paper:#efe9dc;
+    --paper-dim:#d9d2c1;
+    --ink:#15170f;
+    --turf:#2e5339;
+    --turf-bright:#4f8f5b;
+    --line: rgba(239,233,220,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(circle at 50% -10%, rgba(79,143,91,0.12), transparent 55%),
+      var(--pitch);
+    color:var(--paper);
+    font-family:'JetBrains Mono', monospace;
+    min-height:100vh;
+    padding-bottom:60px;
+  }
+  h1,h2,h3,.display{ font-family:'Oswald', sans-serif; text-transform:uppercase; letter-spacing:0.02em; }
+
+  header{
+    padding:22px 6vw 18px;
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:1px dashed var(--line);
+  }
+  .logo{ display:flex; align-items:center; gap:12px; }
+  .logo-mark{
+    width:34px; height:34px; border-radius:50%;
+    border:2px solid var(--turf-bright);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:15px;
+  }
+  .logo-text{ font-family:'Oswald',sans-serif; font-weight:700; font-size:20px; letter-spacing:0.06em; }
+  .logo-sub{ font-size:9.5px; color:var(--turf-bright); letter-spacing:0.18em; margin-top:-2px;}
+  .zona-tag{ font-size:10.5px; letter-spacing:0.1em; color:var(--paper-dim); text-align:right; line-height:1.6; }
+  .zona-tag b{ color:var(--paper); }
+
+  .hero{ padding:64px 6vw 46px; border-bottom:1px dashed var(--line); }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:11px; letter-spacing:0.2em; color:var(--turf-bright);
+    margin-bottom:18px;
+  }
+  .hero-eyebrow::before{ content:'●'; font-size:8px; }
+  .hero h1{ font-size:clamp(34px, 6.5vw, 74px); line-height:0.98; font-weight:700; max-width:16ch; }
+  .hero h1 span{ color:transparent; -webkit-text-stroke:1.5px var(--paper); }
+  .hero p{ font-size:13.5px; color:var(--paper-dim); max-width:50ch; margin-top:22px; line-height:1.7; }
+
+  .section-label{ padding:38px 6vw 0; display:flex; align-items:baseline; gap:14px; }
+  .section-label .num{ color:var(--turf-bright); font-size:12px; }
+  .section-label h2{ font-size:15px; letter-spacing:0.12em; color:var(--paper-dim); font-weight:500; }
+  .section-label .rule{ flex:1; height:1px; background:var(--line); }
+
+  .grid{ padding:26px 6vw 0; display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:26px; }
+
+  .ticket{
+    background:var(--paper); color:var(--ink); border-radius:6px;
+    display:flex; overflow:hidden;
+    box-shadow:0 18px 40px -14px rgba(0,0,0,0.55);
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .ticket:hover{ transform:translateY(-5px); box-shadow:0 26px 54px -16px rgba(0,0,0,0.65); }
+
+  .ticket-photo{
+    width:42%; position:relative; overflow:hidden; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:8px;
+    color:rgba(255,255,255,0.55);
+  }
+  .ticket-photo .placeholder-icon{ width:46px; height:46px; opacity:0.7; }
+  .ticket-photo .placeholder-text{
+    font-size:9px; letter-spacing:0.12em; text-transform:uppercase; text-align:center; padding:0 14px;
+  }
+  .ticket-photo .stock-flag{
+    position:absolute; top:10px; left:10px;
+    background:rgba(0,0,0,0.35); color:var(--paper);
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:9.5px; letter-spacing:0.06em;
+    padding:4px 9px; border-radius:3px;
+  }
+
+  .perf{ width:0; position:relative; border-left:2px dashed rgba(21,23,15,0.25); }
+  .perf::before, .perf::after{ content:''; position:absolute; left:-7px; width:14px; height:14px; border-radius:50%; background:var(--pitch); }
+  .perf::before{ top:-7px; }
+  .perf::after{ bottom:-7px; }
+
+  .ticket-info{ flex:1; padding:20px 20px 18px 24px; display:flex; flex-direction:column; }
+  .ticket-eventname{ font-family:'Oswald', sans-serif; font-weight:700; font-size:20px; line-height:1.08; margin-bottom:2px; }
+  .ticket-kit{ font-size:10.5px; color:#5c5a4d; letter-spacing:0.06em; margin-bottom:16px; }
+
+  .ticket-meta{ display:grid; grid-template-columns:1fr 1fr; gap:10px 14px; margin-bottom:16px; }
+  .meta-item .meta-label{ font-size:9px; letter-spacing:0.14em; color:#8a8672; margin-bottom:3px; }
+  .meta-item .meta-value{ font-size:13px; font-weight:500; }
+
+  .talla-row{ margin-bottom:16px; }
+  .talla-row .meta-label{ font-size:9px; letter-spacing:0.14em; color:#8a8672; margin-bottom:7px; }
+  .talla-opts{ display:flex; gap:6px; flex-wrap:wrap; }
+  .talla-opts button{
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; font-weight:500;
+    border:1px solid rgba(21,23,15,0.3); background:transparent; color:var(--ink);
+    padding:6px 11px; border-radius:3px; cursor:pointer; transition:all .2s ease;
+  }
+  .talla-opts button.active{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+  .ticket-bottom{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; padding-top:14px; border-top:1px dashed rgba(21,23,15,0.22); }
+  .price{ font-family:'Oswald', sans-serif; font-weight:700; font-size:22px; }
+  .price sup{ font-size:11px; font-weight:500; }
+
+  .reservar-btn{
+    font-family:'Oswald', sans-serif; font-weight:600; font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;
+    background:var(--turf); color:var(--paper); border:none; padding:11px 18px; border-radius:4px; cursor:pointer;
+    display:flex; align-items:center; gap:8px; transition:background .2s ease, transform .2s ease;
+  }
+  .reservar-btn:hover{ background:var(--turf-bright); transform:translateX(2px); }
+  .reservar-btn svg{ width:14px; height:14px; }
+
+  .info-strip{
+    margin:60px 6vw 0; border-top:1px dashed var(--line); padding-top:28px;
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:24px;
+  }
+  .info-block .info-label{ font-family:'Oswald',sans-serif; font-size:11.5px; letter-spacing:0.1em; color:var(--turf-bright); margin-bottom:8px; }
+  .info-block p{ font-size:12px; color:var(--paper-dim); line-height:1.7; }
+
+  footer{
+    margin-top:50px; padding:22px 6vw 0; border-top:1px dashed var(--line);
+    font-size:10.5px; color:#6d6a5c; letter-spacing:0.05em;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:560px){
+    .ticket{ flex-direction:column; }
+    .ticket-photo{ width:100%; height:180px; }
+    .perf{ border-left:none; border-top:2px dashed rgba(21,23,15,0.25); }
+    .perf::before{ top:-7px; left:20px; }
+    .perf::after{ bottom:auto; top:-7px; right:20px; left:auto; }
+  }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">M</div>
+    <div>
+      <div class="logo-text">MilShop</div>
+      <div class="logo-sub">DISEÑOS PROPIOS</div>
+    </div>
+  </div>
+  <div class="zona-tag">
+    ENTREGA DIRECTA<br>
+    <b>QUILPUÉ · VIÑA · STGO</b>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">COLECCIÓN ORIGINAL</div>
+  <h1>Camisetas con <span>identidad propia</span>, no de otro club</h1>
+  <p>Diseños originales inspirados en la garra y la costa de la V Región. Sin escudos ni marcas de terceros — 100% MilShop. Elige talla, reserva por WhatsApp y coordinamos entrega.</p>
+</section>
+
+<div class="section-label">
+  <span class="num">01</span>
+  <h2>Colección disponible</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="grid" id="catalogo"></div>
+
+<div class="info-strip">
+  <div class="info-block">
+    <div class="info-label">Zona de entrega directa</div>
+    <p>Quilpué, Viña del Mar y Santiago: coordinamos punto de entrega o despacho local, sin sorpresas de flete.</p>
+  </div>
+  <div class="info-block">
+    <div class="info-label">Envío a regiones</div>
+    <p>Se despacha por courier con envío por pagar — tú coordinas y pagas el flete directo al recibir, según tarifa de tu zona.</p>
+  </div>
+  <div class="info-block">
+    <div class="info-label">Cómo se reserva</div>
+    <p>Eliges talla → tocas "Reservar por WhatsApp" → confirmamos stock, forma de pago y entrega por chat.</p>
+  </div>
+</div>
+
+<footer>
+  <span>MilShop © 2026 — diseños originales</span>
+  <span>Pedidos por WhatsApp +56 9 5966 1519</span>
+</footer>
+
+<script>
+  const WHATSAPP_NUMBER = "56959661519";
+
+  // Catálogo de diseños propios — reemplaza "img" por tu foto real cuando la tengas
+  // y borra la propiedad "placeholder" del producto correspondiente.
+  const productos = [
+    {
+      id: "garra-v",
+      nombre: "Garra V",
+      kit: "Diseño original · Negro/Rojo · Motivo garra",
+      img: null,
+      precio: 22990,
+      tallas: ["S","M","L","XL"],
+      stock: "Disponible"
+    },
+    {
+      id: "marea-alta",
+      nombre: "Marea Alta",
+      kit: "Diseño original · Azul · Motivo ola costera",
+      img: null,
+      precio: 22990,
+      tallas: ["S","M","L","XL"],
+      stock: "Disponible"
+    },
+    {
+      id: "puerto-bravo",
+      nombre: "Puerto Bravo",
+      kit: "Diseño original · Verde/Blanco · Identidad V Región",
+      img: null,
+      precio: 22990,
+      tallas: ["S","M","L","XL"],
+      stock: "Disponible"
+    }
+    // Para agregar más: copiar este bloque y cambiar id, nombre, kit, img, precio, tallas
+  ];
+
+  const catalogo = document.getElementById('catalogo');
+
+  productos.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'ticket';
+
+    const fotoHTML = p.img
+      ? `<img src="${p.img}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover;">`
+      : `<svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 3l1.5 2h5L16 3l4 3-2 2.5V21H6V8.5L4 6l4-3z"/></svg>
+         <div class="placeholder-text">Foto próximamente</div>`;
+
+    card.innerHTML = `
+      <div class="ticket-photo" style="background:#1a1d18;">
+        <span class="stock-flag">${p.stock}</span>
+        ${fotoHTML}
+      </div>
+      <div class="perf"></div>
+      <div class="ticket-info">
+        <div class="ticket-eventname">${p.nombre}</div>
+        <div class="ticket-kit">${p.kit}</div>
+        <div class="ticket-meta">
+          <div class="meta-item">
+            <div class="meta-label">COLECCIÓN</div>
+            <div class="meta-value">Diseño propio</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">STOCK</div>
+            <div class="meta-value">${p.stock}</div>
+          </div>
+        </div>
+        <div class="talla-row">
+          <div class="meta-label">TALLA</div>
+          <div class="talla-opts" data-product="${p.id}"></div>
+        </div>
+        <div class="ticket-bottom">
+          <div class="price"><sup>$</sup>${p.precio.toLocaleString('es-CL')}</div>
+          <button class="reservar-btn" data-product="${p.id}">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2m0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.24 8.24m4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01a.9.9 0 0 0-.66.31c-.23.25-.87.85-.87 2.08 0 1.22.89 2.4 1.02 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29"/></svg>
+            Reservar
+          </button>
+        </div>
+      </div>
+    `;
+
+    const tallaContainer = card.querySelector('.talla-opts');
+    let tallaSeleccionada = p.tallas[Math.floor(p.tallas.length/2)];
+    p.tallas.forEach(t => {
+      const btn = document.createElement('button');
+      btn.textContent = t;
+      if (t === tallaSeleccionada) btn.classList.add('active');
+      btn.addEventListener('click', () => {
+        tallaSeleccionada = t;
+        tallaContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+      tallaContainer.appendChild(btn);
+    });
+
+    card.querySelector('.reservar-btn').addEventListener('click', () => {
+      const mensaje = `Hola! Quiero reservar la camiseta ${p.nombre} (${p.kit}), talla ${tallaSeleccionada} - $${p.precio.toLocaleString('es-CL')}`;
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'reservar_click', { producto: p.nombre, talla: tallaSeleccionada, precio: p.precio });
+      }
+
+      window.open(url, '_blank');
+    });
+
+    catalogo.appendChild(card);
+  });
+</script>
+
+</body>
+</html>
