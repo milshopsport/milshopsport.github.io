@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MilShop — Edición Futbolera</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 <!-- Google Analytics 4 — reemplaza G-XXXXXXXXXX por tu ID real de GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
@@ -23,7 +23,7 @@
     --turf:#2e5339;
     --turf-bright:#4f8f5b;
     --line: rgba(239,233,220,0.14);
-    --font: 'Bebas Neue', -apple-system, sans-serif;
+    --font: 'Lato', -apple-system, sans-serif;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -38,6 +38,13 @@
   }
   h1,h2,h3,.display{ font-family:var(--font); font-weight:700; letter-spacing:-0.01em; }
 
+
+.ticker-bar{ background:var(--turf); overflow:hidden; white-space:nowrap; padding:8px 0; border-bottom:1px solid rgba(0,0,0,0.25); }
+.ticker-track{ display:inline-block; animation: ticker-scroll 32s linear infinite; }
+.ticker-track span{ display:inline-block; font-family:var(--font); font-weight:600; font-size:11.5px; letter-spacing:0.03em; color:var(--paper); padding:0 26px; }
+@keyframes ticker-scroll{ 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+
+  
   header{
     padding:22px 6vw 18px;
     display:flex; align-items:center; justify-content:space-between;
@@ -161,6 +168,10 @@
 </head>
 <body>
 
+<div class="ticker-bar">
+  <div class="ticker-track" id="ticker-track"></div>
+</div>
+  
 <header>
   <div class="logo">
     <div class="logo-mark">
@@ -217,7 +228,24 @@
 <div id="lightbox" onclick="this.style.display='none'" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:999; align-items:center; justify-content:center; cursor:zoom-out;">
   <img id="lightbox-img" src="" style="max-width:90%; max-height:90%; border-radius:8px;">
 </div>
-  
+
+<script>
+  const resultados = [
+    "U. de Concepción 0-2 La Serena",
+    "Limache 1-3 U. de Chile",
+    "Everton 1-1 Audax Italiano",
+    "Ñublense 2-1 U. La Calera",
+    "Cobresal 0-2 Dep. Concepción",
+    "Colo Colo 2-2 O'Higgins",
+    "Palestino 5-1 Huachipato"
+  ];
+  const track = document.getElementById('ticker-track');
+  const doble = [...resultados, ...resultados];
+  track.innerHTML = doble.map(r => `<span>⚽ ${r}</span>`).join('');
+</script>
+
+
+
 <script>
   const WHATSAPP_NUMBER = "56959661519";
 
