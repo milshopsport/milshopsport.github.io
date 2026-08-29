@@ -53,7 +53,7 @@
   header{
     padding:22px 6vw 18px;
     display:flex; align-items:center; justify-content:space-between;
-    border-bottom:1px dashed var(--line);
+    border-bottom:1px solid var(--line);
     gap:16px;
   }
   
@@ -67,14 +67,14 @@
   }
   .logo-mark img{ width:100%; height:100%; object-fit:cover; }
   .logo-text{ font-family:var(--font); font-weight:700; font-size:20px; letter-spacing:0.06em; }
-  .logo-sub{ font-size:9.5px; color:#c9a227; letter-spacing:0.18em; margin-top:-2px;}
+  .logo-sub{ font-size:9.5px; color:#b8863c; letter-spacing:0.18em; margin-top:-2px;}
   .zona-tag{ font-size:10.5px; letter-spacing:0.1em; color:var(--paper-dim); text-align:right; line-height:1.6; }
-  .zona-tag b{ color:#c9a227; }
+  .zona-tag b{ color:#b8863c; }
 
-  .hero{ padding:64px 6vw 46px; border-bottom:1px dashed var(--line); }
+  .hero{ padding:64px 6vw 46px; border-bottom:1px solid var(--line); }
   .hero-eyebrow{
     display:inline-flex; align-items:center; gap:8px;
-    font-size:11px; letter-spacing:0.2em; color:#c9a227;
+    font-size:11px; letter-spacing:0.2em; color:#b8863c;
     margin-bottom:18px;
   }
   .hero-eyebrow::before{ content:'●'; font-size:8px; }
@@ -83,7 +83,7 @@
   .hero p{ font-size:13.5px; color:var(--paper-dim); max-width:50ch; margin-top:22px; line-height:1.7; }
 
   .section-label{ padding:38px 6vw 0; display:flex; align-items:baseline; gap:14px; }
-  .section-label .num{ color:#c9a227; font-size:12px; }
+  .section-label .num{ color:#b8863c; font-size:12px; }
   .section-label h2{ font-size:15px; letter-spacing:0.12em; color:var(--paper-dim); font-weight:500; }
   .section-label .rule{ flex:1; height:1px; background:var(--line); }
 
@@ -147,21 +147,21 @@
 
   .reservar-btn{
     font-family:var(--font); font-weight:600; font-size:11px; letter-spacing:0.04em; text-transform:uppercase;
-    background:#c9a227; color:#0a0a0a; border:none; padding:9px 14px; border-radius:4px; cursor:pointer;
+    background:#b8863c; color:#0a0a0a; border:none; padding:9px 14px; border-radius:4px; cursor:pointer;
     display:flex; align-items:center; gap:8px; white-space:nowrap; transition:background .2s ease, transform .2s ease;
   }
-  .reservar-btn:hover{ background:#e0b830; transform:translateX(2px); }
+  .reservar-btn:hover{ background:#d1a15a; transform:translateX(2px); }
   .reservar-btn svg{ width:14px; height:14px; flex-shrink:0; }
 
   .info-strip{
-    margin:60px 6vw 0; border-top:1px dashed var(--line); padding-top:28px;
+    margin:60px 6vw 0; border-top:1px solid var(--line); padding-top:28px;
     display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:24px;
   }
-  .info-block .info-label{ font-family:var(--font); font-size:11.5px; letter-spacing:0.1em; color:#c9a227; margin-bottom:8px; }
+  .info-block .info-label{ font-family:var(--font); font-size:11.5px; letter-spacing:0.1em; color:#b8863c; margin-bottom:8px; }
   .info-block p{ font-size:12px; color:var(--paper-dim); line-height:1.7; }
 
   footer{
-    margin-top:50px; padding:22px 6vw 0; border-top:1px dashed var(--line);
+    margin-top:50px; padding:22px 6vw 0; border-top:1px solid var(--line);
     font-size:10.5px; color:#6d6a5c; letter-spacing:0.05em;
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
   }
@@ -176,11 +176,11 @@
     display:flex; align-items:center; justify-content:center;
     flex-shrink:0; transition:border-color .2s ease, background .2s ease;
   }
-  .cart-btn:hover{ border-color:#c9a227; background:rgba(201,162,39,0.08); }
+  .cart-btn:hover{ border-color:#b8863c; background:rgba(201,162,39,0.08); }
   .cart-btn svg{ width:19px; height:19px; }
   .cart-badge{
     position:absolute; top:-6px; right:-6px;
-    background:#c9a227; color:#0a0a0a;
+    background:#b8863c; color:#0a0a0a;
     font-family:var(--font); font-weight:700; font-size:10.5px;
     min-width:18px; height:18px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
@@ -238,10 +238,10 @@
   .cart-total-row .value{ font-size:24px; font-weight:700; }
   .cart-checkout-btn{
     width:100%; font-family:var(--font); font-weight:700; font-size:12.5px; letter-spacing:0.05em; text-transform:uppercase;
-    background:#c9a227; color:#0a0a0a; border:none; padding:14px; border-radius:4px; cursor:pointer;
+    background:#b8863c; color:#0a0a0a; border:none; padding:14px; border-radius:4px; cursor:pointer;
     display:flex; align-items:center; justify-content:center; gap:8px; transition:background .2s ease;
   }
-  .cart-checkout-btn:hover{ background:#e0b830; }
+  .cart-checkout-btn:hover{ background:#d1a15a; }
   .cart-checkout-btn svg{ width:16px; height:16px; }
   .cart-checkout-btn:disabled{ opacity:0.4; cursor:not-allowed; }
   .cart-clear-btn{
@@ -275,7 +275,7 @@
   .cart-float-btn{
     position:fixed; bottom:22px; right:22px; z-index:500;
     width:56px; height:56px; border-radius:50%;
-    background:#c9a227; color:#0a0a0a; border:none; cursor:pointer;
+    background:#b8863c; color:#0a0a0a; border:none; cursor:pointer;
     display:flex; align-items:center; justify-content:center;
     box-shadow:0 10px 26px rgba(0,0,0,0.4);
     transition:transform .2s ease;
@@ -284,7 +284,7 @@
   .cart-float-btn svg{ width:24px; height:24px; }
   .cart-float-badge{
     position:absolute; top:-4px; right:-4px;
-    background:#0a0a0a; color:#c9a227;
+    background:#0a0a0a; color:#b8863c;
     font-family:var(--font); font-weight:700; font-size:11px;
     min-width:20px; height:20px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
@@ -341,7 +341,7 @@
 </section>
 
 <div class="section-label">
-  <span class="num">01</span>
+  <span class="num">PUERTA 3</span>
   <h2>Colección disponible</h2>
   <div class="rule"></div>
 </div>
@@ -350,7 +350,7 @@
 
 <div style="padding:30px 6vw 0; text-align:center;">
   <p style="font-size:12.5px; color:var(--paper-dim); margin-bottom:10px;">¿No encontraste la camiseta que buscas?</p>
-  <button id="pedido-especial-btn" style="font-family:var(--font); font-weight:600; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase; background:transparent; color:#c9a227; border:1px solid #c9a227; padding:10px 20px; border-radius:4px; cursor:pointer;">
+  <button id="pedido-especial-btn" style="font-family:var(--font); font-weight:600; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase; background:transparent; color:#b8863c; border:1px solid #b8863c; padding:10px 20px; border-radius:4px; cursor:pointer;">
     Pedir una camiseta especial
   </button>
 </div>
@@ -372,7 +372,6 @@
 
 <footer>
   <span>MilShop © 2026 — colección futbolera</span>
-  <span>Pedidos por WhatsApp +56 9 5966 1519</span>
 </footer>
 
 <div id="lightbox" onclick="this.style.display='none'" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:999; align-items:center; justify-content:center; cursor:zoom-out;">
