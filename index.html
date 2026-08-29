@@ -136,6 +136,10 @@
     padding:6px 11px; border-radius:3px; cursor:pointer; transition:all .2s ease;
   }
   .talla-opts button.active{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .talla-opts button.agotada{
+    opacity:0.35; cursor:not-allowed; text-decoration:line-through;
+  }
+  .talla-opts button.agotada:hover{ background:transparent; }
 
   .ticket-bottom{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:10px; padding-top:14px; border-top:1px dashed rgba(21,23,15,0.22); }
   .price{ font-family:var(--font); font-weight:700; font-size:22px; }
@@ -459,6 +463,7 @@
 
 <script>
   const WHATSAPP_NUMBER = "56959661519";
+  const TALLAS_AGOTADAS = ["S", "M"]; // tallas sin stock actualmente
 
   // Catálogo de diseños propios — reemplaza "img" por tu foto real cuando la tengas
   // y borra la propiedad "placeholder" del producto correspondiente.
@@ -811,16 +816,24 @@
     });
     
     const tallaContainer = card.querySelector('.talla-opts');
-    let tallaSeleccionada = p.tallas[Math.floor(p.tallas.length/2)];
+    const tallasDisponibles = p.tallas.filter(t => !TALLAS_AGOTADAS.includes(t));
+    let tallaSeleccionada = tallasDisponibles[Math.floor(tallasDisponibles.length/2)] || null;
     p.tallas.forEach(t => {
       const btn = document.createElement('button');
       btn.textContent = t;
-      if (t === tallaSeleccionada) btn.classList.add('active');
-      btn.addEventListener('click', () => {
-        tallaSeleccionada = t;
-        tallaContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
+      const agotada = TALLAS_AGOTADAS.includes(t);
+      if (agotada) {
+        btn.disabled = true;
+        btn.classList.add('agotada');
+        btn.title = 'Sin stock por ahora';
+      } else {
+        if (t === tallaSeleccionada) btn.classList.add('active');
+        btn.addEventListener('click', () => {
+          tallaSeleccionada = t;
+          tallaContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      }
       tallaContainer.appendChild(btn);
     });
 
