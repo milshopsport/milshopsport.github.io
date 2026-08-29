@@ -578,8 +578,9 @@
       cartBadge.style.display = 'none';
     }
 
-      const hayCustom = cart.some(it => it.precio === null);
+           const hayCustom = cart.some(it => it.precio === null);
     cartTotalEl.textContent = formatoCLP(totalPrecio) + (hayCustom ? ' + a confirmar' : '');
+    cartCheckoutBtn.disabled = cart.length === 0;
 
     if (cart.length === 0) {
       cartItemsEl.innerHTML = '<p class="cart-empty">Tu carrito está vacío</p>';
