@@ -239,7 +239,29 @@
     width:100%; background:none; border:none; color:#8a8672; font-size:11px;
     text-decoration:underline; cursor:pointer; margin-top:10px;
   }
+  .pedido-modal{
+    position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.95);
+    width:min(380px, 90vw); max-height:88vh; overflow-y:auto;
+    background:var(--paper); color:var(--ink); border-radius:8px;
+    z-index:999; display:none; opacity:0;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .pedido-modal.open{ display:block; opacity:1; transform:translate(-50%,-50%) scale(1); }
 
+  .pedido-modal-header{
+    padding:18px 20px; border-bottom:1px dashed rgba(21,23,15,0.25);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .pedido-modal-header h3{ font-size:16px; font-weight:700; }
+  .pedido-modal-body{ padding:18px 20px 22px; display:flex; flex-direction:column; }
+  .pedido-label{ font-size:10.5px; letter-spacing:0.08em; color:#8a8672; margin:10px 0 5px; text-transform:uppercase; }
+  .pedido-label:first-child{ margin-top:0; }
+  .pedido-input{
+    font-family:var(--font); font-size:13px; color:var(--ink);
+    border:1px solid rgba(21,23,15,0.3); border-radius:4px; padding:9px 10px;
+    width:100%; background:var(--paper);
+  }
+  .pedido-nota{ font-size:11px; color:#8a8672; line-height:1.5; margin-top:12px; }
 
   @media (max-width:560px){
     .ticket{ flex-direction:column; }
@@ -300,6 +322,13 @@
 
 <div class="grid" id="catalogo"></div>
 
+<div style="padding:30px 6vw 0; text-align:center;">
+  <p style="font-size:12.5px; color:var(--paper-dim); margin-bottom:10px;">¿No encontraste la camiseta que buscas?</p>
+  <button id="pedido-especial-btn" style="font-family:var(--font); font-weight:600; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase; background:transparent; color:#c9a227; border:1px solid #c9a227; padding:10px 20px; border-radius:4px; cursor:pointer;">
+    Pedir una camiseta especial
+  </button>
+</div>
+
 <div class="info-strip">
   <div class="info-block">
     <div class="info-label">Zona de entrega directa</div>
@@ -344,7 +373,35 @@
     <button class="cart-clear-btn" id="cart-clear-btn">Vaciar carrito</button>
   </div>
 </aside>
+<div class="cart-overlay" id="pedido-overlay"></div>
+<div class="pedido-modal" id="pedido-modal">
+  <div class="pedido-modal-header">
+    <h3>Pedido especial</h3>
+    <button class="cart-close" id="pedido-close-btn" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="pedido-modal-body">
+    <label class="pedido-label">¿Qué camiseta buscas?</label>
+    <input type="text" id="pedido-nombre" placeholder="Ej: Argentina retro 1986" class="pedido-input">
 
+    <label class="pedido-label">Talla</label>
+    <select id="pedido-talla" class="pedido-input">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L" selected>L</option>
+      <option value="XL">XL</option>
+    </select>
+
+    <label class="pedido-label">Cantidad</label>
+    <input type="number" id="pedido-cantidad" value="1" min="1" class="pedido-input">
+
+    <label class="pedido-label">Comentario (opcional)</label>
+    <textarea id="pedido-comentario" placeholder="Color, detalles, año, etc." class="pedido-input" rows="2"></textarea>
+
+    <p class="pedido-nota">El precio de este ítem queda "a confirmar" — te confirmamos disponibilidad y valor por WhatsApp.</p>
+
+    <button id="pedido-agregar-btn" class="cart-checkout-btn" style="margin-top:6px;">Agregar al carrito</button>
+  </div>
+</div>
 
 
 
@@ -381,7 +438,7 @@
       nombre: "Colo Colo Local",
       kit: "Diseño 2026",
       img: "modelo1.jpg",
-      precio: 22990,
+      precio: 19990,
       tallas: ["S","M","L","XL"],
       stock: "Disponible"
     },
@@ -390,7 +447,7 @@
       nombre: "Colo Colo Visita",
       kit: "Diseño 2026",
       img: "modelo7.jpg",
-      precio: 22990,
+      precio: 19990,
       tallas: ["S","M","L","XL"],
       stock: "Disponible"
     },
@@ -399,7 +456,7 @@
       nombre: "Universidad de Chile Local",
       kit: "Diseño 2026",
       img: "modelo 2.jpg",
-      precio: 22990,
+      precio: 19990,
       tallas: ["S","M","L","XL"],
       stock: "Disponible"
     },
@@ -408,7 +465,7 @@
       nombre: "Universidad Católica Local",
       kit: "Diseño 2026",
       img: "modelo3.jpg",
-      precio: 22990,
+      precio: 19990,
       tallas: ["S","M","L","XL"],
       stock: "Disponible"
     },
@@ -417,7 +474,7 @@
       nombre: "Vozinha",
       kit: "Diseño 2026",
       img: "modelo4.jpg",
-      precio: 22990,
+      precio: 20000,
       tallas: ["S","M","L","XL"],
       stock: "Disponible"
     },
@@ -426,7 +483,7 @@
       nombre: "Argentina",
       kit: "Diseño 2026",
       img: "modelo5.jpg",
-      precio: 22990,
+      precio: 19990,
       tallas: ["S","M","L","XL"],
       stock: "Disponible"
     },
@@ -435,7 +492,7 @@
       nombre: "Santiago Wanders",
       kit: "Diseño 2026",
       img: "modelo6.jpg",
-      precio: 22990,
+      precio: 19990,
       tallas: ["S","M","L","XL"],
       stock: "Disponible"
     }
@@ -512,7 +569,7 @@
 
   function renderCarrito(){
     const totalItems = cart.reduce((sum, it) => sum + it.cantidad, 0);
-    const totalPrecio = cart.reduce((sum, it) => sum + it.cantidad * it.precio, 0);
+       const totalPrecio = cart.reduce((sum, it) => sum + it.cantidad * (it.precio || 0), 0);
 
     if (totalItems > 0) {
       cartBadge.style.display = 'flex';
@@ -521,8 +578,8 @@
       cartBadge.style.display = 'none';
     }
 
-    cartTotalEl.textContent = formatoCLP(totalPrecio);
-    cartCheckoutBtn.disabled = cart.length === 0;
+      const hayCustom = cart.some(it => it.precio === null);
+    cartTotalEl.textContent = formatoCLP(totalPrecio) + (hayCustom ? ' + a confirmar' : '');
 
     if (cart.length === 0) {
       cartItemsEl.innerHTML = '<p class="cart-empty">Tu carrito está vacío</p>';
@@ -541,7 +598,7 @@
           </div>
         </div>
         <div style="display:flex; flex-direction:column; align-items:flex-end; justify-content:space-between;">
-          <span class="cart-item-price">${formatoCLP(it.precio * it.cantidad)}</span>
+        <span class="cart-item-price">${it.precio === null ? 'A confirmar' : formatoCLP(it.precio * it.cantidad)}</span>
           <button class="cart-item-remove" data-remove="${index}">Quitar</button>
         </div>
       </div>
@@ -575,10 +632,11 @@
 
   cartCheckoutBtn.addEventListener('click', () => {
     if (cart.length === 0) return;
-    const totalPrecio = cart.reduce((sum, it) => sum + it.cantidad * it.precio, 0);
+        const totalPrecio = cart.reduce((sum, it) => sum + it.cantidad * (it.precio || 0), 0);
     let mensaje = 'Hola! Quiero reservar:\n';
     cart.forEach(it => {
-      mensaje += `- ${it.cantidad}x ${it.nombre} (${it.kit}), talla ${it.talla} - ${formatoCLP(it.precio * it.cantidad)}\n`;
+      const precioTxt = it.precio === null ? 'A confirmar' : formatoCLP(it.precio * it.cantidad);
+      mensaje += `- ${it.cantidad}x ${it.nombre} (${it.kit}), talla ${it.talla} - ${precioTxt}\n`;
     });
     mensaje += `\nTOTAL: ${formatoCLP(totalPrecio)}`;
 
@@ -591,7 +649,57 @@
     window.open(url, '_blank');
   });
 
+  /* ---------------- PEDIDO ESPECIAL ---------------- */
+  const pedidoOverlay = document.getElementById('pedido-overlay');
+  const pedidoModal = document.getElementById('pedido-modal');
 
+  function abrirPedidoEspecial(){
+    pedidoOverlay.classList.add('open');
+    pedidoModal.classList.add('open');
+  }
+  function cerrarPedidoEspecial(){
+    pedidoOverlay.classList.remove('open');
+    pedidoModal.classList.remove('open');
+  }
+
+  document.getElementById('pedido-especial-btn').addEventListener('click', abrirPedidoEspecial);
+  document.getElementById('pedido-close-btn').addEventListener('click', cerrarPedidoEspecial);
+  pedidoOverlay.addEventListener('click', cerrarPedidoEspecial);
+
+  document.getElementById('pedido-agregar-btn').addEventListener('click', () => {
+    const nombre = document.getElementById('pedido-nombre').value.trim();
+    const talla = document.getElementById('pedido-talla').value;
+    const cantidad = parseInt(document.getElementById('pedido-cantidad').value) || 1;
+    const comentario = document.getElementById('pedido-comentario').value.trim();
+
+    if (!nombre) {
+      alert('Cuéntanos qué camiseta buscas.');
+      return;
+    }
+
+    cart.push({
+      id: 'custom-' + Date.now(),
+      nombre: nombre,
+      kit: comentario ? `Por encargo — ${comentario}` : 'Por encargo',
+      precio: null,
+      talla: talla,
+      cantidad: cantidad,
+      custom: true
+    });
+    guardarCarrito();
+    renderCarrito();
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'pedido_especial', { producto: nombre, talla: talla, cantidad: cantidad });
+    }
+
+    document.getElementById('pedido-nombre').value = '';
+    document.getElementById('pedido-comentario').value = '';
+    document.getElementById('pedido-cantidad').value = 1;
+
+    cerrarPedidoEspecial();
+    abrirCarrito();
+  });
 
 
 
