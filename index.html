@@ -741,7 +741,7 @@
     },
     {
       id: "retro-bayern-2001",
-      nombre: "Bayern Múnich 2001",
+      nombre: "FC Bayern 2001",
       kit: "Colección Retro",
       img: "modelo20.jpg",
       precio: 28000,
@@ -1006,7 +1006,7 @@
 
     card.innerHTML = `
       <div class="ticket-photo" style="background:#1a1d18;">
-        <span class="stock-flag">${p.stock}</span>
+      <span class="stock-flag${p.proximamente ? ' proximamente' : ''}">${p.stock}</span>
         ${fotoHTML}
       </div>
       <div class="perf"></div>
@@ -1043,7 +1043,7 @@
               <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             </svg>
-            Agregar
+          ${p.proximamente ? 'Reservar' : 'Agregar'}
           </button>
           
         </div>
@@ -1063,12 +1063,13 @@
     });
     
     const tallaContainer = card.querySelector('.talla-opts');
-    const tallasDisponibles = p.tallas.filter(t => !TALLAS_AGOTADAS.includes(t));
+    const tallasDisponibles = p.proximamente ? p.tallas : p.tallas.filter(t => !TALLAS_AGOTADAS.includes(t));
     let tallaSeleccionada = tallasDisponibles[Math.floor(tallasDisponibles.length/2)] || null;
     p.tallas.forEach(t => {
       const btn = document.createElement('button');
+    
       btn.textContent = t;
-      const agotada = TALLAS_AGOTADAS.includes(t);
+     const agotada = !p.proximamente && TALLAS_AGOTADAS.includes(t);
       if (agotada) {
         btn.disabled = true;
         btn.classList.add('agotada');
