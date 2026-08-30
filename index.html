@@ -517,6 +517,15 @@
   const WHATSAPP_NUMBER = "56959661519";
   const TALLAS_AGOTADAS = ["S", "M"]; // tallas sin stock actualmente
 
+  // Imágenes del carrusel del hero — pon aquí las fotos que quieras mostrar arriba,
+  // no tienen que ser las mismas que las del catálogo (pueden ser fotos de ambiente,
+  // gente usando la camiseta, la cancha, etc.)
+  const heroImagenes = [
+    "hero1.jpg",
+    "hero2.jpg",
+    "hero3.jpg"
+  ];
+
   // Catálogo de diseños propios — reemplaza "img" por tu foto real cuando la tengas
   // y borra la propiedad "placeholder" del producto correspondiente.
   const productos = [
@@ -801,7 +810,7 @@
   });
   
   /* ---------------- CARRUSEL DE FONDO DEL HERO ---------------- */
-  const heroFotos = productos.filter(p => p.img).map(p => p.img);
+  const heroFotos = heroImagenes;
   if (heroFotos.length > 0) {
     const heroContainer = document.getElementById('hero-bg-container');
     heroContainer.innerHTML = heroFotos.map((src, i) =>
