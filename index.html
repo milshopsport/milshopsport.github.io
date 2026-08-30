@@ -276,7 +276,7 @@
   }
   .cart-float-btn:hover{ transform:scale(1.06); }
   .cart-float-btn svg{ width:24px; height:24px; }
-  .cart-float-badge{
+   .cart-float-badge{
     position:absolute; top:-4px; right:-4px;
     background:#0a0a0a; color:#b8863c;
     font-family:var(--font); font-weight:700; font-size:11px;
@@ -285,7 +285,25 @@
     padding:0 4px; border:2px solid var(--paper);
   }
 
-
+  .filtros-liga{
+    padding:20px 6vw 0; display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:16px;
+  }
+  .filtro-card{
+    background:var(--paper); border:none; border-radius:8px; cursor:pointer;
+    overflow:hidden; padding:0; transition:transform .2s ease, box-shadow .2s ease;
+    box-shadow:0 10px 24px -10px rgba(0,0,0,0.5);
+  }
+  .filtro-card:hover{ transform:translateY(-3px); }
+  .filtro-card.active{ outline:2px solid #b8863c; outline-offset:2px; }
+  .filtro-card-img{
+    width:100%; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
+    background:#f2f0ea;
+  }
+  .filtro-card-img svg{ width:52%; height:52%; color:#141414; }
+  .filtro-card-label{
+    font-family:var(--font); font-weight:700; font-size:11px; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--ink); text-align:center; padding:10px 6px;
+  }
 
 
   
@@ -326,17 +344,46 @@
 </header>
 </header>
 
+  </div>
+</header>
+
 <section class="hero">
   <h1>Tu pasión. <span>Tu camiseta.</span></h1>
   <p>Encuentra esa camiseta que representa tus colores, tu historia y tu forma de vivir el fútbol.</p>
    <p>Elige la tuya y llévala contigo.</p>
 </section>
-</section>
-
+  
 <div class="section-label">
   <span class="num">EN CANCHA</span>
   <h2>Colección disponible</h2>
   <div class="rule"></div>
+</div>
+
+<div class="filtros-liga" id="filtros-liga">
+  <button class="filtro-card active" data-categoria="todos">
+    <div class="filtro-card-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+    </div>
+    <div class="filtro-card-label">Todos</div>
+  </button>
+  <button class="filtro-card" data-categoria="Liga Chilena">
+    <div class="filtro-card-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l1.5 2h5L16 3l4 3-2 2.5V21H6V8.5L4 6l4-3z"></path></svg>
+    </div>
+    <div class="filtro-card-label">Edición Futbolera</div>
+  </button>
+  <button class="filtro-card" data-categoria="selecciones">
+    <div class="filtro-card-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="3"></line></svg>
+    </div>
+    <div class="filtro-card-label">Selecciones</div>
+  </button>
+  <button class="filtro-card" data-categoria="retro">
+    <div class="filtro-card-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+    </div>
+    <div class="filtro-card-label">Retro</div>
+  </button>
 </div>
 
 <div class="grid" id="catalogo"></div>
@@ -461,13 +508,14 @@
   // y borra la propiedad "placeholder" del producto correspondiente.
   const productos = [
     {
-      id: "Colo Colo",
+    id: "Colo Colo",
       nombre: "Colo Colo Local",
       kit: "Diseño 2026",
       img: "modelo1.jpg",
       precio: 19990,
       tallas: ["S","M","L","XL"],
-      stock: "Disponible"
+      stock: "Disponible",
+      categoria: "Liga Chilena"
     },
       {
       id: "Colo colo",
@@ -476,7 +524,7 @@
       img: "modelo7.jpg",
       precio: 19990,
       tallas: ["S","M","L","XL"],
-      stock: "Disponible"
+      stock: "Liga Chilena"
     },
     {
       id: "U.de Chile",
@@ -485,7 +533,7 @@
       img: "modelo 2.jpg",
       precio: 19990,
       tallas: ["S","M","L","XL"],
-      stock: "Disponible"
+      stock: "Liga Chilena"
     },
     {
       id: "Universidad Catolica",
@@ -494,7 +542,7 @@
       img: "modelo3.jpg",
       precio: 19990,
       tallas: ["S","M","L","XL"],
-      stock: "Disponible"
+      stock: "Liga Chilena"
     },
     {
       id: "Colo Colo",
@@ -503,7 +551,7 @@
       img: "modelo4.jpg",
       precio: 20000,
       tallas: ["S","M","L","XL"],
-      stock: "Disponible"
+      stock: "Liga Chilena"
     },
     {
       id: "Argentina",
@@ -521,7 +569,7 @@
       img: "modelo6.jpg",
       precio: 19990,
       tallas: ["S","M","L","XL"],
-      stock: "Disponible"
+      stock: "Liga Chilena"
     }
     
 
@@ -741,8 +789,9 @@
   const catalogo = document.getElementById('catalogo');
 
   productos.forEach(p => {
-    const card = document.createElement('div');
+      const card = document.createElement('div');
     card.className = 'ticket';
+    card.dataset.categoria = p.categoria || 'Liga Chilena';
 
    const fotoHTML = p.img
   ? `<img src="${p.img}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="event.stopPropagation(); document.getElementById('lightbox-img').src=this.src; document.getElementById('lightbox').style.display='flex';">`
@@ -846,7 +895,26 @@
 
       abrirCarrito();
     });
-    catalogo.appendChild(card);
+        catalogo.appendChild(card);
+  });
+  renderCarrito();
+
+  document.querySelectorAll('.filtro-card').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filtro-card').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const categoria = btn.dataset.categoria;
+      document.querySelectorAll('#catalogo .ticket').forEach(card => {
+        if (categoria === 'todos' || card.dataset.categoria === categoria) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
   });
   renderCarrito();
 </script>
