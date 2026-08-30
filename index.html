@@ -71,7 +71,21 @@
   .zona-tag{ font-size:10.5px; letter-spacing:0.1em; color:var(--paper-dim); text-align:right; line-height:1.6; }
   .zona-tag b{ color:#b8863c; }
 
-  .hero{ padding:64px 6vw 46px; border-bottom:1px solid var(--line); }
+  .hero{
+    position:relative; padding:64px 6vw 46px; border-bottom:1px solid var(--line);
+    overflow:hidden; min-height:420px; display:flex; flex-direction:column; justify-content:center;
+  }
+  .hero-bg-slide{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; opacity:0; transition:opacity 1.2s ease;
+    z-index:0;
+  }
+  .hero-bg-slide.active{ opacity:1; }
+  .hero-bg-overlay{
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(10,10,10,0.55), rgba(10,10,10,0.85) 70%, var(--pitch));
+  }
+  .hero-content{ position:relative; z-index:2; }
   .hero h1{ font-size:clamp(34px, 6.5vw, 74px); line-height:0.98; font-weight:700; max-width:16ch; }
   .hero h1 span{ color:transparent; -webkit-text-stroke:1.5px var(--paper); }
   .hero p{ font-size:13.5px; color:var(--paper-dim); max-width:50ch; margin-top:22px; line-height:1.7; }
@@ -342,11 +356,14 @@
     </div>
   </div>
 </header>
-
 <section class="hero">
-  <h1>Tu pasión. <span>Tu camiseta.</span></h1>
-  <p>Encuentra esa camiseta que representa tus colores, tu historia y tu forma de vivir el fútbol.</p>
-   <p>Elige la tuya y llévala contigo.</p>
+  <div id="hero-bg-container"></div>
+  <div class="hero-bg-overlay"></div>
+  <div class="hero-content">
+    <h1>Tu pasión. <span>Tu camiseta.</span></h1>
+    <p>Encuentra esa camiseta que representa tus colores, tu historia y tu forma de vivir el fútbol.</p>
+     <p>Elige la tuya y llévala contigo.</p>
+  </div>
 </section>
   
 <div class="section-label">
@@ -782,7 +799,25 @@
     cerrarPedidoEspecial();
     abrirCarrito();
   });
+  
+  /* ---------------- CARRUSEL DE FONDO DEL HERO ---------------- */
+  const heroFotos = productos.filter(p => p.img).map(p => p.img);
+  if (heroFotos.length > 0) {
+    const heroContainer = document.getElementById('hero-bg-container');
+    heroContainer.innerHTML = heroFotos.map((src, i) =>
+      `<img class="hero-bg-slide${i === 0 ? ' active' : ''}" src="${src}" alt="">`
+    ).join('');
 
+    let heroIndex = 0;
+    const heroSlides = heroContainer.querySelectorAll('.hero-bg-slide');
+    if (heroSlides.length > 1) {
+      setInterval(() => {
+        heroSlides[heroIndex].classList.remove('active');
+        heroIndex = (heroIndex + 1) % heroSlides.length;
+        heroSlides[heroIndex].classList.add('active');
+      }, 4000);
+    }
+  }
 
 
 
